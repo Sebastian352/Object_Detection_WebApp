@@ -21,8 +21,8 @@ class VideoCamera(object):
 
     def get_frame(self):
         image = self.frame
-        # bbox, label, conf = cv.detect_common_objects(image)
-        # output_image = draw_bbox(image, bbox, label, conf)
+        #bbox, label, conf = cv.detect_common_objects(image)
+        #output_image = draw_bbox(image, bbox, label, conf)
         _, jpeg = cv2.imencode(".jpg", image)
         return jpeg.tobytes()
 
