@@ -1,82 +1,86 @@
-{% load static %}
-<html>
-  <head>
-    <title>Video Live Stream</title>
-    {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
-  </head>
-  <body>
-    <div class="container">
-      <div class="container p-5 mb-5 text-black text">
-        <h1>
-          <strong
-            >Security-Focused Web App for Object and People Detection
-          </strong>
-        </h1>
-        <br />
-        <br />
-        <div class="row" id="gallery1">
-          <img class="rounded mx-auto d-block" src="{% url 'video_feed' %}" />
-        </div>
-        <div class="row pt-2" id="gallery2">
-          <div class="col">
-            <img
-              class="w-100 rounded mx-auto d-block"
-              src="{% static 'image1.png' %}
+{% extends 'base.html' %}{% block content %} 
+{% if user.is_authenticated %} Hi {{ user.username }}!
+<a href="/signout" class="btn btn-danger">Logout</a>
+{% else %}
+<a href="/signin" class="btn btn-primary"
+  ><span class="glyphicon glyphicon-log-in"></span>Login</a
+>
+<a href="/signup" class="btn btn-success">Signup</a>
+{% endif %}
+<div class="container">
+  <div class="container p-5 mb-5 text-black text">
+    <h1>
+      <strong>Security-Focused Web App for Object and People Detection </strong>
+    </h1>
+    <br />
+    <br />
+    <div class="row" id="gallery1">
+      <img class="rounded mx-auto d-block" src="{% url 'video_feed' %}" />
+    </div>
+    <div class="row pt-2" id="gallery2">
+      <div class="col">
+        {% comment %}
+        <img
+          class="w-100 rounded mx-auto d-block"
+          src="{% static 'image1.png' %}
             "
-            />
-          </div>
-          <div class="col">
-            <img
-              class="w-100 rounded mx-auto d-block"
-              src="{% static 'image2.jpg' %}"
-            />
-          </div>
-          <div class="col">
-            <img
-              class="w-100 rounded mx-auto d-block"
-              src="{% static 'image3.png' %}"
-            />
-          </div>
+        />
+        {% endcomment %}
+      </div>
+      <div class="col">
+        {% comment %}
+        <img
+          class="w-100 rounded mx-auto d-block"
+          src="{% static 'image2.jpg' %}"
+        />
+        {% endcomment %}
+      </div>
+      <div class="col">
+        {% comment %}
+        <img
+          class="w-100 rounded mx-auto d-block"
+          src="{% static 'image3.png' %}"
+        />
+        {% endcomment %}
+      </div>
+    </div>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col">
+          <h3>Overview</h3>
+          <p>
+            This web application aims to enhance security measures in
+            high-security environments such as airports, government buildings,
+            or other restricted access areas. It utilizes OpenCV, Convolutional
+            Neural Networks (CNNs), and Django to detect and monitor both
+            objects and individuals passing through the premises.
+          </p>
         </div>
-        <div class="container mt-5">
-          <div class="row">
-            <div class="col">
-              <h3>Overview</h3>
-              <p>
-                This web application aims to enhance security measures in
-                high-security environments such as airports, government
-                buildings, or other restricted access areas. It utilizes OpenCV,
-                Convolutional Neural Networks (CNNs), and Django to detect and
-                monitor both objects and individuals passing through the
-                premises.
-              </p>
-            </div>
-            <div class="col">
-              <h3>Approach</h3>
-              <ul>
-                <li>
-                  <strong>Object Detection:</strong> Utilizes CNNs through the
-                  cvlib library to identify various objects present within the
-                  camera's view.
-                </li>
-                <li>
-                  <strong>People Detection:</strong> Employs OpenCV and cvlib to
-                  detect and track individuals moving within the monitored area.
-                </li>
-                <li>
-                  <strong>Real-time Monitoring:</strong> Provides real-time
-                  monitoring and alerts security personnel in case of any
-                  suspicious or unauthorized objects or activities.
-                </li>
-                <li>
-                  <strong>Web Interface:</strong> Accessible through a web
-                  browser, enabling remote monitoring and administration.
-                </li>
-              </ul>
-            </div>
-          </div>
+        <div class="col">
+          <h3>Approach</h3>
+          <ul>
+            <li>
+              <strong>Object Detection:</strong> Utilizes CNNs through the cvlib
+              library to identify various objects present within the camera's
+              view.
+            </li>
+            <li>
+              <strong>People Detection:</strong> Employs OpenCV and cvlib to
+              detect and track individuals moving within the monitored area.
+            </li>
+            <li>
+              <strong>Real-time Monitoring:</strong> Provides real-time
+              monitoring and alerts security personnel in case of any suspicious
+              or unauthorized objects or activities.
+            </li>
+            <li>
+              <strong>Web Interface:</strong> Accessible through a web browser,
+              enabling remote monitoring and administration.
+            </li>
+          </ul>
         </div>
       </div>
     </div>
-  </body>
-</html>
+  </div>
+</div>
+{% endblock %}
